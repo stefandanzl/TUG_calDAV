@@ -2,4 +2,5 @@
 Python script for uploading Calendar dates from TU Graz exam JSON file to personal calDAV Calendars.
 
 
-The difference between the two python scripts is that they need different input JSON files and will therefore create slightly different calendar events.
+The difference between the two python scripts is that they need different input JSON files which can be obtained by loading the exam browser page on TUG online and monitoring internet traffic in the network tab found in any browser's developer tools. 
+The response 
