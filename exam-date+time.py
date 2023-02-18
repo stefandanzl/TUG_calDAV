@@ -23,7 +23,7 @@ with open('excluded.json', mode='r',encoding="utf-8") as f:
 
 
 # Load calendar data from JSON file
-with open('calendar_data_long.json', mode='r',encoding="utf-8") as f:
+with open('calendar_date+time.json', mode='r',encoding="utf-8") as f:
     data = json.load(f)
 
 # Create a CalDAV client session
