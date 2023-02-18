@@ -25,7 +25,7 @@ try:
 except:
     print("no excluded course json file")
 
-with open('calendar_data.json', mode='r',encoding="utf-8") as f:
+with open('calendar_date.json', mode='r',encoding="utf-8") as f:
     data = json.load(f)
 
 # Create a CalDAV client session
