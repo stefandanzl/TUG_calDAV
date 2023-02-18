@@ -1,16 +1,7 @@
 import json
-import os
 import requests
-from dotenv import load_dotenv
 from datetime import datetime
 
-# Load environment variables from .env file
-load_dotenv()
-
-# Get environment variables
-cal_dav_url = os.getenv('CALDAV_URL')
-cal_dav_username = os.getenv('CALDAV_USERNAME')
-cal_dav_password = os.getenv('CALDAV_PASSWORD')
 
 def parse_date(date_string):
     d = datetime.strptime(date_string, '%Y-%m-%d')
@@ -20,13 +11,23 @@ def parse_date(date_string):
 
 try:
     # Load calendar data from JSON file
-    with open('excluded.json', mode='r',encoding="utf-8") as f:
-        exclude_data = json.load(f)
+    with open('settings.json', mode='r',encoding="utf-8") as f:
+        settings = json.load(f)
+        
 except:
-    print("no excluded course json file")
+    print("settings json file!")
+    input()
 
-with open('calendar_date.json', mode='r',encoding="utf-8") as f:
-    data = json.load(f)
+# Get environment variables
+cal_dav_url = settings["caldav_url"]
+cal_dav_username =settings["caldav_username"]
+cal_dav_password = settings["caldav_password"]
+    
+try:
+    with open('calendar_date.json', mode='r',encoding="utf-8") as f:
+        data = json.load(f)
+except:
+    print("no calendar_date.json file found!")
 
 # Create a CalDAV client session
 session = requests.Session()
@@ -39,13 +40,11 @@ for exam in data['examOfferIndices']:
     summary = exam['courseName']
     
     ok = True
-    for i in exclude_data["array"]:
+    for i in settings["excluded"]:
         if summary == i:
             ok = False
         
     if ok:
-
-    
         event_date = parse_date(exam['examDate']['value'])
         print(event_date)
         #start_date = exam['examDate']['value']

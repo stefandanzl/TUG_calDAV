@@ -1,0 +1,11 @@
+{
+	"caldav_url":"https://yourwebsite.here",
+	"caldav_username":"usernamehere",
+	"caldav_password":"passwordhere",
+    "excluded": [
+        "Enter",
+        "excluded",
+        "courses",
+        "here"
+    ]
+}
